@@ -1,0 +1,34 @@
+<html>
+    
+<body>
+    
+<ul>
+    <h1>{{title}}</h1>
+
+    <h3>{{comment}}</h3>
+
+    <button>Filter your to-dos</button>
+
+    <li *ngFor="let todo of todos">
+        
+        <!--Complete <span[ngClass]="{pink: !todo.completed}"> {{todo.completed}}</span>, -->
+        <!-- <span *ngIF="todo.completed"===false><button (click)="orderBeer(todo.task)">strikethrought</button></span> -->
+
+        
+
+        <span *ngIf="!todo.completed"><button (click)="strikethrough(todo)">Complete</button></span>
+
+        <span [ngClass]="{strikethrough: todo.completed}"> {{todo.task}}</span>
+
+        <button>x</button>
+
+       
+    </li>
+    <input type="text" [(ngModel)] ="newTodo">
+    <button (click)="addTask(newTodo)">Add</button>
+
+</ul>
+
+</body>
+
+</html>
