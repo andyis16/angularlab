@@ -11,6 +11,7 @@ interface Todo {
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
+  filter: string = "";
   
   // create an array of todos, do I need the word public
 
@@ -24,6 +25,7 @@ export class TodoComponent implements OnInit {
   ]
 
   // add title
+
   title: string = "My ToDo List"
   comment: string ="A place to store your to-dos"
   newTodo: string; 
@@ -31,6 +33,7 @@ export class TodoComponent implements OnInit {
 
 
   // click completed button
+
   strikethrough=function (todo): void {
     todo.completed = true;
 
@@ -46,6 +49,23 @@ export class TodoComponent implements OnInit {
     this.todos.push (newTask)
     
   }
+
+  removeTask=function (task:string): void {
+        
+    let removeIndex = this.todos.findIndex(function(todo){
+      return todo.task===task
+    })
+
+    this.todos.splice(removeIndex, 1)
+    
+  } 
+
+  getFilteredResults(): Todo[] {
+    return this.todos.filter((todo) => {
+      return todo.task.toLowerCase().includes(this.filter.toLowerCase());
+    });
+  }
+
 
   constructor() {}
 

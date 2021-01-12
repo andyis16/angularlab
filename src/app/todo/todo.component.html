@@ -2,32 +2,32 @@
     
 <body>
     
-<ul>
+<ol>
     <h1>{{title}}</h1>
 
     <h3>{{comment}}</h3>
 
-    <button>Filter your to-dos</button>
+    <form>
+    <input type ="text" name="filter" [(ngModel)] ="filter" placeholder="Filter your to-dos"  />
+    </form>
 
-    <li *ngFor="let todo of todos">
+
+    <!-- <li *ngFor="let todo of todos"> -->
         
-        <!--Complete <span[ngClass]="{pink: !todo.completed}"> {{todo.completed}}</span>, -->
-        <!-- <span *ngIF="todo.completed"===false><button (click)="orderBeer(todo.task)">strikethrought</button></span> -->
+    <li *ngFor="let todo of getFilteredResults()">    
 
-        
-
-        <span *ngIf="!todo.completed"><button (click)="strikethrough(todo)">Complete</button></span>
+        <span *ngIf="!todo.completed"><button class="complete" (click)="strikethrough(todo)">Complete</button></span>
 
         <span [ngClass]="{strikethrough: todo.completed}"> {{todo.task}}</span>
 
-        <button>x</button>
+        <button class="remove" (click)="removeTask(todo.task)">x</button>
 
-       
+     
     </li>
-    <input type="text" [(ngModel)] ="newTodo">
-    <button (click)="addTask(newTodo)">Add</button>
+    <input type="text" placeholder="Add your to-do" [(ngModel)] ="newTodo">
+    <button class="add" (click)="addTask(newTodo)">Add</button>
 
-</ul>
+</ol>
 
 </body>
 
